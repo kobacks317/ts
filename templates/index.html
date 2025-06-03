@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps Realtime Sync</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <style>
+        /* 全画面にフィットさせる */
+        html, body {
+          height: calc(100% + env(safe-area-inset-top)/2);
+          margin: 0;
+          padding: 0;
+          touch-action: manipulation;
+          touch-action: pan-x pan-y;
+          overflow: hidden;
+          position: static;
+          overscroll-behavior: none;
+        }
+        #map {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          
+        }
+        gmp-map-3d {
+          height: 100%;
+        }
+        :root {
+          --sat: env(safe-area-inset-top);
+          --sar: env(safe-area-inset-right);
+          --sab: env(safe-area-inset-bottom);
+          --sal: env(safe-area-inset-left);
+        }
+    </style>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMTBfZZ81dGDwtMF9Lwsjea7-chMFgWr0&v=beta&libraries=marker"></script>
+    <script src="./templates/jretsmap.js?v=032503"></script>
+  </head>
+  <body onload="initMap()">
+    <!-- <h1>Google Maps Realtime Sync</h1> -->
+    <div id="map">
+    </div>
+  </body>
+</html>
