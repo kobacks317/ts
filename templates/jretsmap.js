@@ -2563,13 +2563,17 @@ function initMap() {
     _mapTypeId = map.getMapTypeId();
   }
 
+  const url = new URL(location.href);
+  const mapid = url.searchParams.get('map');
+  
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: _position,
     zoom: _zoom,
     heading: _heading,
     tilt: _tilt,
     mapTypeId: _mapTypeId,
-    mapId: url.searchParams.get('map'),
+    mapId: mapid,
     colorScheme: colorScheme,
     cameraControl: false,
     zoomControl: false,
