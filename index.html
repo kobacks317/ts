@@ -36,7 +36,24 @@
           --sal: env(safe-area-inset-left);
         }
     </style>
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMTBfZZ81dGDwtMF9Lwsjea7-chMFgWr0&v=beta&libraries=marker"></script>
+    <script>
+        function getApiKeyFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("key");
+        }
+        const apiKey = getApiKeyFromUrl();
+        if (apiKey) {
+            const script = document.createElement("script");
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        } else {
+            document.body.innerHTML = "<p style='color:red'>APIキーがURLに指定されていません。?key=YOUR_API_KEY を付けてください。</p>";
+        }
+    </script>
+
+    <!--script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMTBfZZ81dGDwtMF9Lwsjea7-chMFgWr0&v=beta&libraries=marker"></script-->
     <script src="./templates/jretsmap.js?v=032503"></script>
   </head>
   <body onload="initMap()">
