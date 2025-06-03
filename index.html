@@ -44,7 +44,7 @@
         const apiKey = getApiKeyFromUrl();
         if (apiKey) {
             const script = document.createElement("script");
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=beta&libraries=marker"`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=beta&libraries=marker`;
             script.async = true;
             script.defer = true;
             document.head.appendChild(sript);
