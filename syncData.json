@@ -1,0 +1,23 @@
+{
+    "Location_m": 10,
+    "Time_ms": 0,
+    "Sim_Time_ms": 0,
+    "Pc_Time_ms": 0,
+    "CanStart": true,
+    "Lon": 139.76668989945657,
+    "Lat": 35.6798728812051,
+    "TargetName" : "新橋 (JT-02)",
+    "TargetLocation_m" : 1860,
+    "TargetLon": 139.7584437,
+    "TargetLat": 35.6665015573723,
+    "OriginLocation_m": 0,
+    "Route": [{
+          "dist": 0,
+          "lng": 139.766937091065,
+          "lat": 35.68149201
+      }, {
+          "dist": 0,
+          "lng": 139.758443663007,
+          "lat": 35.6665015573723
+      }]
+}
