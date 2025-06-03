@@ -2705,7 +2705,7 @@ function initMap() {
   map.controls[google.maps.ControlPosition.RIGHT_TOP].getAt(0).style.marginTop = "env(safe-area-inset-top)";
 
   var interval = 3000;
-  const url = new URL(location.href);
+  //const url = new URL(location.href);
   const param_i = url.searchParams.get('i');
   if (param_i != null) {
     interval = param_i;
