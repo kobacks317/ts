@@ -46,6 +46,7 @@
             const script = document.createElement("script");
             script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&v=beta&libraries=marker"`;
             script.async = true;
+            scrpt.defer = true;
             document.head.appendChild(sript);
         } else {
             document.body.innerHTML = "<p style='color:red'>APIキーがURLに指定されていません。?key=YOUR_API_KEY を付けてください。</p>";
