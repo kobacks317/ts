@@ -2569,7 +2569,7 @@ function initMap() {
     heading: _heading,
     tilt: _tilt,
     mapTypeId: _mapTypeId,
-    mapId: "4d591feb04e1a0be",
+    //mapId: "4d591feb04e1a0be",
     colorScheme: colorScheme,
     cameraControl: false,
     zoomControl: false,
