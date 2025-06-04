@@ -1441,9 +1441,12 @@ var syncData = {
 
 var _syncData = {};
 
+const url = new URL(location.href);
+const syncUrl = url.searchParams.get('sync');
+
 // Flaskサーバから定期的にSyncDataを取得
 async function getSyncData() {
-  const response = await fetch('/sync');
+  const response = await fetch(syncUrl);
   const syncData = await response.json();
   return syncData;
 }
