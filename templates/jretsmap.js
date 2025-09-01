@@ -2427,7 +2427,10 @@ class StationMarker {
 
         numbering.style.fontSize = "28px";
         numbering.style.lineHeight = "25px";
-      }
+      } else if (split[0] == "TJ" || split[0] == "TS") {
+        plate.style.borderRadius = "10px";
+        content.style.borderRadius = "13px";
+      )
 
       plate.appendChild(lineCode);
       plate.appendChild(numbering);
@@ -2855,3 +2858,4 @@ function initMap() {
 
   
 }
+
