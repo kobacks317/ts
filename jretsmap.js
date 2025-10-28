@@ -2410,6 +2410,8 @@ class StationMarker {
         plate.style.borderColor = "#00b261";
       } else if (split[0] == "JS") {
         plate.style.borderColor = "#e31f26";
+      } else if (split[0] == "JK") {
+        plate.style.borderColor = "#00B2E5";
       } else if (split[0] == "OI") {
         plate.style.borderWidth = "2px";
         plate.style.lineHeight = "normal";
@@ -2850,4 +2852,5 @@ function initMap() {
 
   
 }
+
 
