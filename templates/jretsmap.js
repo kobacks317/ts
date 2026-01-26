@@ -2573,6 +2573,11 @@ function initMap() {
 
   const url = new URL(location.href);
   const mapid = url.searchParams.get('map');
+  const title = url.searchParams.get('title');
+
+  if (title != null) {
+    document.title = title;
+  }
   
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -2860,6 +2865,7 @@ function initMap() {
 
   
 }
+
 
 
 
