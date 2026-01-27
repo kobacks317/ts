@@ -2052,7 +2052,7 @@ class TargetControl extends ControlButton {
       bg = "#444444";
     }
 
-    this.controlButton.style.BackGround = `linear-gradient(to right, ${lc} ${prog}%, ${bg} ${prog}%)`;
+    this.controlButton.style.background = `linear-gradient(to right, ${lc} ${prog}%, ${bg} ${prog}%)`;
     
     // this.controlButton.textContent = targetName;
     // this.controlButton.appendChild(document.createElement("br"));
@@ -2939,6 +2939,7 @@ function initMap() {
 
   
 }
+
 
 
 
