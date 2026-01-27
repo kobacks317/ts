@@ -2027,7 +2027,7 @@ class TargetControl extends ControlButton {
   update(targetName, prog, path_before, path_after, color) {
     var targetIcon = document.createElement("div");
     targetIcon.style.scale = "50%";
-    targetIcon.appendChild(marker_t.content);
+    targetIcon.appendChild(marker_t.content.cloneNode(true));
     this.controlButton.appendChild(targetIcon);
     this.controlButton.textContent = targetName;
     // this.controlButton.appendChild(document.createElement("br"));
@@ -2873,6 +2873,7 @@ function initMap() {
 
   
 }
+
 
 
 
