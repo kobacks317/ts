@@ -2475,8 +2475,8 @@ class StationMarker {
   
       content.appendChild(plate);
       } else {
-        
       }
+    return content;
   }
 
   getPosition() {
@@ -2887,6 +2887,7 @@ function initMap() {
 
   
 }
+
 
 
 
