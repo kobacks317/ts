@@ -2495,7 +2495,7 @@ class StationMarker {
     return content;
   }
 
-  static function adjustLightness(hex, targetL) {
+  static adjustLightness(hex, targetL) {
     if (!hex) return null;
   
     hex = hex.replace("#", "");
@@ -2939,6 +2939,7 @@ function initMap() {
 
   
 }
+
 
 
 
