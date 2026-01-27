@@ -1953,7 +1953,8 @@ class TargetControl extends ControlButton {
     this.controlButton.style.borderRadius = "20px";
     this.controlButton.style.display = "flex";
     this.controlButton.style.alignItems = "center";
-    this.controlButton.className = "m-plus-1p-medium";
+    this.controlButton.fontFamily = "M PLUS 1p, sans-serif";
+    this.controlButton.fontWeight = "500";
     
 
     this.controlButton.title = "Click to toggle target mode";
@@ -2940,6 +2941,7 @@ function initMap() {
 
   
 }
+
 
 
 
