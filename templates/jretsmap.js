@@ -1950,6 +1950,10 @@ class TargetControl extends ControlButton {
     super();
     this.controlButton.style.marginBottom = "25px";
     this.controlButton.style.width = "200px";
+    this.controlButton.style.borderRadius = "20px";
+    this.controlButton.style.display = "felx";
+    this.controlButton.style.alignItems = "center";
+    
 
     this.controlButton.title = "Click to toggle target mode";
 
@@ -2021,13 +2025,17 @@ class TargetControl extends ControlButton {
   }
   
   update(targetName, prog, path_before, path_after, color) {
+    var targetIcon = document.createElement("div");
+    targetIcon.style.scale = "50%";
+    targetIcon.appendChild(marker_t.content);
+    this.controlButton.appendChild(targetIcon);
     this.controlButton.textContent = targetName;
-    this.controlButton.appendChild(document.createElement("br"));
-    const progressBar = document.createElement("progress");
-    progressBar.setAttribute("id", "progress");
-    progressBar.setAttribute("max", "100");
-    progressBar.setAttribute("value", prog);
-    this.controlButton.appendChild(progressBar);
+    // this.controlButton.appendChild(document.createElement("br"));
+    // const progressBar = document.createElement("progress");
+    // progressBar.setAttribute("id", "progress");
+    // progressBar.setAttribute("max", "100");
+    // progressBar.setAttribute("value", prog);
+    // this.controlButton.appendChild(progressBar);
 
     route_before.setPath(path_before);
     route_after.setPath(path_after);
@@ -2865,6 +2873,7 @@ function initMap() {
 
   
 }
+
 
 
 
