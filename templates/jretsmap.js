@@ -1951,7 +1951,7 @@ class TargetControl extends ControlButton {
     this.controlButton.style.marginBottom = "25px";
     this.controlButton.style.width = "200px";
     this.controlButton.style.borderRadius = "20px";
-    this.controlButton.style.display = "felx";
+    this.controlButton.style.display = "flex";
     this.controlButton.style.alignItems = "center";
     
 
@@ -2026,7 +2026,7 @@ class TargetControl extends ControlButton {
   
   update(targetName, prog, path_before, path_after, color) {
     var targetIcon = document.createElement("div");
-    targetIcon.style.scale = "50%";
+    targetIcon.style.transform = "scale(0.5)";
     targetIcon.appendChild(marker_t.content.cloneNode(true));
     this.controlButton.appendChild(targetIcon);
     this.controlButton.textContent = targetName;
@@ -2873,6 +2873,7 @@ function initMap() {
 
   
 }
+
 
 
 
