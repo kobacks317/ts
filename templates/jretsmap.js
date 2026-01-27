@@ -2357,7 +2357,7 @@ class LimitMarker {
 class StationMarker {
   constructor(map, pos, name, z) {
 
-    var content = this.createIcon(name);
+    var content = createIcon(name);
 
     this.content = content;
     this.pos = pos;
@@ -2374,7 +2374,7 @@ class StationMarker {
     });
   }
 
-  createIcon(name) {
+  static createIcon(name) {
     var content = null;
     var match = name.match(/\w{2}-\d{2}/);
     
@@ -2887,6 +2887,7 @@ function initMap() {
 
   
 }
+
 
 
 
