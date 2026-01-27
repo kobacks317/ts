@@ -2357,7 +2357,7 @@ class LimitMarker {
 class StationMarker {
   constructor(map, pos, name, z) {
 
-    var content = createIcon(name);
+    var content = StationMaeker.createIcon(name);
 
     this.content = content;
     this.pos = pos;
@@ -2887,6 +2887,7 @@ function initMap() {
 
   
 }
+
 
 
 
