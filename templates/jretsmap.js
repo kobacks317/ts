@@ -2027,11 +2027,14 @@ class TargetControl extends ControlButton {
   update(targetName, prog, path_before, path_after, color) {
     var targetIcon = document.createElement("div");
     targetIcon.style.transform = "scale(0.5)";
-    targetIcon.appendChild(marker_t.content.cloneNode(true));
+    var clone = marker_t.content.cloneNode(true);
+    clone.style.boxShadow = "none";
+    targetIcon.appendChild(clone);
 
     var label = document.createElement("span");
     label.textContent = targetName;
 
+    this.controlButton.textContent = "";
     this.controlButton.appendChild(targetIcon);
     this.controlButton.appendChild(label);
     
@@ -2879,6 +2882,7 @@ function initMap() {
 
   
 }
+
 
 
 
