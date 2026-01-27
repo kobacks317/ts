@@ -2044,12 +2044,12 @@ class TargetControl extends ControlButton {
     this.controlButton.appendChild(targetIcon);
     this.controlButton.appendChild(label);
 
+    var lc = StationMarker.adjustLightness(syncData.Color, 0.8);
+    var bg = "#fff";
+    
     if (darkMode) {
-      const lc = StationMarker.adjustLightness(syncData.Color, 0.2);
-      const bg = "#444444";
-    } else {
-      const lc = StationMarker.adjustLightness(syncData.Color, 0.8);
-      const bg = "#fff";
+      lc = StationMarker.adjustLightness(syncData.Color, 0.2);
+      bg = "#444444";
     }
 
     this.controlButton.style.BackGround = `linear-gradient(to right, ${lc} ${prog}%, ${bg} ${prog}%)`;
@@ -2939,6 +2939,7 @@ function initMap() {
 
   
 }
+
 
 
 
