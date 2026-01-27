@@ -2041,6 +2041,8 @@ class TargetControl extends ControlButton {
 
     var label = document.createElement("span");
     label.textContent = targetName;
+    label.style.width = "66%";
+    label.style.lineHeight = "14px";
 
     this.controlButton.textContent = "";
     this.controlButton.appendChild(targetIcon);
@@ -2941,6 +2943,7 @@ function initMap() {
 
   
 }
+
 
 
 
