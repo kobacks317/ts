@@ -2027,7 +2027,7 @@ class TargetControl extends ControlButton {
   update(targetName, prog, path_before, path_after, color) {
     var targetIcon = document.createElement("div");
     targetIcon.style.transform = "scale(0.5)";
-    var clone = marker_t.content.cloneNode(true);
+    var clone = StationMarker.createIcon(targetName);
     clone.style.boxShadow = "none";
     targetIcon.appendChild(clone);
 
@@ -2356,6 +2356,25 @@ class LimitMarker {
 
 class StationMarker {
   constructor(map, pos, name, z) {
+
+    var content = this.createIcon(name);
+
+    this.content = content;
+    this.pos = pos;
+    this.name = name;
+    this.z = z;
+    this.greyed = false;
+    
+    this.marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: this.pos,
+      content: this.content,
+      zIndex: this.z,
+      gmpClickable: true
+    });
+  }
+
+  createIcon(name) {
     var content = null;
     var match = name.match(/\w{2}-\d{2}/);
     
@@ -2410,7 +2429,7 @@ class StationMarker {
       plate.style.fontWeight = "bold";
       plate.style.alignContent = "center";
       plate.style.textAlign = "center";
-
+  
       const lineCode = document.createElement("p");
       lineCode.textContent = split[0];
       lineCode.style.margin = "0px";
@@ -2420,7 +2439,7 @@ class StationMarker {
       numbering.textContent = split[1];
       numbering.style.margin = "0px";
       numbering.style.fontSize = "20px";
-
+  
       
       if (split[0] == "JT") {
         plate.style.borderColor = "#F68B1E";
@@ -2437,41 +2456,27 @@ class StationMarker {
         plate.style.lineHeight = "normal";
         plate.style.fontWeight = "normal";
         plate.style.borderColor = "#a583a1";
-
+  
         lineCode.textContent = "Ōito Line";
         lineCode.style.fontSize = "8px";
         lineCode.style.lineHeight = "9px";
         lineCode.style.margin = "1px";
         lineCode.style.transform = "scaleY(1.2)";
-
+  
         numbering.style.fontSize = "28px";
         numbering.style.lineHeight = "25px";
       } else if (split[0] == "TJ" || split[0] == "TS") {
         plate.style.borderRadius = "10px";
         content.style.borderRadius = "13px";
       }
-
+  
       plate.appendChild(lineCode);
       plate.appendChild(numbering);
-
+  
       content.appendChild(plate);
-    } else {
-
-    }
-
-    this.content = content;
-    this.pos = pos;
-    this.name = name;
-    this.z = z;
-    this.greyed = false;
-    
-    this.marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: this.pos,
-      content: this.content,
-      zIndex: this.z,
-      gmpClickable: true
-    });
+      } else {
+        
+      }
   }
 
   getPosition() {
@@ -2882,6 +2887,7 @@ function initMap() {
 
   
 }
+
 
 
 
