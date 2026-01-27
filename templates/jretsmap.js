@@ -2026,7 +2026,13 @@ class TargetControl extends ControlButton {
   
   update(targetName, prog, path_before, path_after, color) {
     var targetIcon = document.createElement("div");
-    targetIcon.style.transform = "scale(0.5)";
+    const match = targetName.match(/\[\w{3}\]/);
+    if (match != null) {
+      targetIcon.style.transform = "scale(0.5)";
+    } else {
+      targetIcon.style.transform = "scale(0.7)";
+    }
+    
     var clone = StationMarker.createIcon(targetName);
     clone.style.boxShadow = "none";
     targetIcon.appendChild(clone);
@@ -2037,6 +2043,16 @@ class TargetControl extends ControlButton {
     this.controlButton.textContent = "";
     this.controlButton.appendChild(targetIcon);
     this.controlButton.appendChild(label);
+
+    if (darkMode) {
+      const lc = StationMarker.adjustLightness(syncData.Color, 0.2);
+      const bg = "#444444";
+    } else {
+      const lc = StationMarker.adjustLightness(syncData.Color, 0.8);
+      const bg = "#fff";
+    }
+
+    this.controlButton.style.BackGround = `linear-gradient(to right, ${lc} ${prog}%, ${bg} ${prog}%)`;
     
     // this.controlButton.textContent = targetName;
     // this.controlButton.appendChild(document.createElement("br"));
@@ -2479,6 +2495,42 @@ class StationMarker {
     return content;
   }
 
+  static function adjustLightness(hex, targetL) {
+    if (!hex) return null;
+  
+    hex = hex.replace("#", "");
+  
+    // 3桁HEX対応
+    if (hex.length === 3) {
+      hex = hex.split("").map(c => c + c).join("");
+    }
+  
+    if (hex.length !== 6) return null;
+  
+    const rgb = hex.match(/.{2}/g).map(v => parseInt(v, 16) / 255);
+    const [r, g, b] = rgb;
+  
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0, s = 0;
+    let l = (max + min) / 2;
+  
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+  
+    l = Math.min(1, Math.max(0, targetL));
+  
+    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+  }
+
   getPosition() {
     return this.pos;
   }
@@ -2887,6 +2939,7 @@ function initMap() {
 
   
 }
+
 
 
 
