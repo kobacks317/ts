@@ -2036,16 +2036,20 @@ class TargetControl extends ControlButton {
     }
     
     var clone = StationMarker.createIcon(targetName);
-    clone.style.boxShadow = "none";
-    targetIcon.appendChild(clone);
-
     var label = document.createElement("span");
+    if (clone != null) {
+      clone.style.boxShadow = "none";
+      targetIcon.appendChild(clone);
+      this.controlButton.appendChild(targetIcon);
+      label.style.width = "66%";
+    } else {
+      label.style.width = "100%";
+    }
+    
     label.textContent = targetName;
-    label.style.width = "66%";
     label.style.lineHeight = "14px";
 
     this.controlButton.textContent = "";
-    this.controlButton.appendChild(targetIcon);
     this.controlButton.appendChild(label);
 
     var lc = StationMarker.adjustLightness(syncData.Color, 0.8);
@@ -2943,6 +2947,7 @@ function initMap() {
 
   
 }
+
 
 
 
