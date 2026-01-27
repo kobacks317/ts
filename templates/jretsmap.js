@@ -2027,17 +2027,19 @@ class TargetControl extends ControlButton {
   }
   
   update(targetName, prog, path_before, path_after, color) {
-    var targetIcon = document.createElement("div");
-    const match = targetName.match(/\[\w{3}\]/);
-    if (match != null) {
-      targetIcon.style.transform = "scale(0.45)";
-    } else {
-      targetIcon.style.transform = "scale(0.6)";
-    }
+    
+    this.controlButton.textContent = "";
+    var label = document.createElement("span");
     
     var clone = StationMarker.createIcon(targetName);
-    var label = document.createElement("span");
     if (clone != null) {
+      var targetIcon = document.createElement("div");
+      const match = targetName.match(/\[\w{3}\]/);
+      if (match != null) {
+        targetIcon.style.transform = "scale(0.45)";
+      } else {
+        targetIcon.style.transform = "scale(0.6)";
+      }
       clone.style.boxShadow = "none";
       targetIcon.appendChild(clone);
       this.controlButton.appendChild(targetIcon);
@@ -2049,7 +2051,6 @@ class TargetControl extends ControlButton {
     label.textContent = targetName;
     label.style.lineHeight = "14px";
 
-    this.controlButton.textContent = "";
     this.controlButton.appendChild(label);
 
     var lc = StationMarker.adjustLightness(syncData.Color, 0.8);
@@ -2947,6 +2948,7 @@ function initMap() {
 
   
 }
+
 
 
 
