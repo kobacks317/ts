@@ -2028,8 +2028,14 @@ class TargetControl extends ControlButton {
     var targetIcon = document.createElement("div");
     targetIcon.style.transform = "scale(0.5)";
     targetIcon.appendChild(marker_t.content.cloneNode(true));
+
+    var label = document.createElement("span");
+    label.textContent = targetName;
+
     this.controlButton.appendChild(targetIcon);
-    this.controlButton.textContent = targetName;
+    this.controlButton.appendChild(label);
+    
+    // this.controlButton.textContent = targetName;
     // this.controlButton.appendChild(document.createElement("br"));
     // const progressBar = document.createElement("progress");
     // progressBar.setAttribute("id", "progress");
@@ -2873,6 +2879,7 @@ function initMap() {
 
   
 }
+
 
 
 
