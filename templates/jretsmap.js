@@ -2025,6 +2025,17 @@ class TargetControl extends ControlButton {
     });
     return this;
   }
+
+  activate() {
+    if (darkMode) {
+      this.controlButton.style.border = "white solid 2px";
+    } else {
+      this.controlButton.style.border = "black solid 2px";
+    }
+  }
+  normal() {
+    this.controlButton.style.border = "none";
+  }
   
   update(targetName, prog, path_before, path_after, color) {
     
@@ -2043,12 +2054,12 @@ class TargetControl extends ControlButton {
       clone.style.boxShadow = "none";
       targetIcon.appendChild(clone);
       this.controlButton.appendChild(targetIcon);
-      label.style.width = "66%";
+      label.style.width = "60%";
     } else {
       label.style.width = "100%";
     }
     
-    label.textContent = targetName;
+    label.textContent = targetName.replace(/-/g, "\u2011");
     label.style.lineHeight = "14px";
 
     this.controlButton.appendChild(label);
@@ -2948,6 +2959,7 @@ function initMap() {
 
   
 }
+
 
 
 
