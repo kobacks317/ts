@@ -2029,9 +2029,9 @@ class TargetControl extends ControlButton {
     var targetIcon = document.createElement("div");
     const match = targetName.match(/\[\w{3}\]/);
     if (match != null) {
-      targetIcon.style.transform = "scale(0.5)";
+      targetIcon.style.transform = "scale(0.45)";
     } else {
-      targetIcon.style.transform = "scale(0.7)";
+      targetIcon.style.transform = "scale(0.6)";
     }
     
     var clone = StationMarker.createIcon(targetName);
@@ -2049,7 +2049,7 @@ class TargetControl extends ControlButton {
     var bg = "#fff";
     
     if (darkMode) {
-      lc = StationMarker.adjustLightness(syncData.Color, 0.2);
+      lc = StationMarker.adjustLightness(syncData.Color, 0.3);
       bg = "#444444";
     }
 
@@ -2940,6 +2940,7 @@ function initMap() {
 
   
 }
+
 
 
 
