@@ -34,6 +34,10 @@ var heading = 229.3;
 var initRotation = 2;
 var _scale = 17;
 
+var refreshCount = 0;
+var autoSceneF = 0;
+var autoSceneT = 0;
+
 var _d = 0;
 
 var mapTypeNo = 0;
@@ -2817,11 +2821,29 @@ function initMap() {
   if (param_i != null) {
     interval = param_i;
   }
+  const param_f = url.searchParams.get('f');
+  if (param_f != null) {
+    autoSceneT = param_f;
+  }
+  const param_t = url.searchParams.get('t');
+  if (param_t != null) {
+    autoSceneF = param_t;
+  }
 
   // 定期的にSyncDataを取得してマーカーの位置を更新
+  if (intervalId != null) {
+    clearInterval(intervalId);
+  }
   intervalId = setInterval(async () => {
     _syncData = syncData;
     syncData = await getSyncData();
+    if (autoSceneT + autoSceneF > 0) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT) {
+        targetControl.controlButton.click();
+      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF) {
+        followControl.controlButton.click();
+      }
+    }
     if (syncData.Lat && syncData.Lon) {
       const newPosition = {
         lat: syncData.Lat,
@@ -2959,6 +2981,7 @@ function initMap() {
 
   
 }
+
 
 
 
