@@ -2932,9 +2932,11 @@ function initMap() {
     if (autoSceneT + autoSceneF > 0) {
       if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
         targetControl.controlButton.click();
+		infoDisplay.toggleVisible(false);
       } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
         await wait(interval-750);
         followControl.controlButton.click();
+		infoDisplay.toggleVisible(true);
       }
       console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
     }
@@ -2993,6 +2995,7 @@ function initMap() {
 
   
 }
+
 
 
 
