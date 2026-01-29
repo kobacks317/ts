@@ -24,9 +24,9 @@ var infoDisplay;
 
 var follow = true;
 var followWide = false;
-var northUp = true;
+var northUp = false;
 var target = false;
-var overview = false;
+var overview = true;
 var demo = false;
 var darkMode = false;
 var colorScheme = 'LIGHT';
@@ -2983,6 +2983,7 @@ function initMap() {
 
   
 }
+
 
 
 
