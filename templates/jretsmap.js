@@ -2827,11 +2827,9 @@ function initMap() {
     interval = param_i;
   }
   const param_f = url.searchParams.get('f');
-  if (param_f != null) {
-    autoSceneF = Number(param_f);
-  }
   const param_t = url.searchParams.get('t');
-  if (param_t != null) {
+  if (param_f != null && param_t != null) {
+    autoSceneF = Number(param_f);
     autoSceneT = Number(param_t);
   }
 
@@ -2928,9 +2926,9 @@ function initMap() {
     }
     //ビュー自動切換え
     if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
         targetControl.controlButton.click();
-      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
+      } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
         await wait(interval-750);
         followControl.controlButton.click();
       }
@@ -2991,6 +2989,7 @@ function initMap() {
 
   
 }
+
 
 
 
