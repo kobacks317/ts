@@ -2931,13 +2931,13 @@ function initMap() {
       if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
         targetControl.controlButton.click();
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
-        await wait(100);
+        await wait(interval-500);
         followControl.controlButton.click();
       }
       console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
     }
     refreshCount++;
-  }, interval); // 2秒ごとに更新
+  }, interval);
 
 
   map.addListener("dragstart", () => {
@@ -2991,6 +2991,7 @@ function initMap() {
 
   
 }
+
 
 
 
