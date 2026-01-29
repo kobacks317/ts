@@ -33,6 +33,7 @@ var colorScheme = 'LIGHT';
 var heading = 229.3;
 var initRotation = 2;
 var _scale = 17;
+var _tilt = 60;
 
 var refreshCount = 0;
 var autoSceneF = 0;
@@ -2655,9 +2656,9 @@ function initMap() {
   var _position = {lat: syncData.Lat, lng: syncData.Lon}; // 有楽町の位置
   var _position_t = {lat: syncData.Route.at(-1).lat, lng: syncData.Route.at(-1).lng}; // 新橋の位置
   var _position_o = {lat: syncData.Route.at(0).lat, lng: syncData.Route.at(0).lng}; // 東京の位置
-  var _tilt = 0;
+  // var _tilt = 0;
   var _heading = 0;
-  var _zoom = 17;
+  var _zoom = _scale;
   var _mapTypeId = "roadmap";
   initRotation = 2;
 
@@ -2837,15 +2838,7 @@ function initMap() {
   intervalId = setInterval(async () => {
     _syncData = syncData;
     syncData = await getSyncData();
-    if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
-        targetControl.controlButton.click();
-      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
-        followControl.controlButton.click();
-      }
-      console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
-    }
-    refreshCount++;
+    
     if (syncData.Lat && syncData.Lon) {
       const newPosition = {
         lat: syncData.Lat,
@@ -2929,6 +2922,16 @@ function initMap() {
         marker.setIcon(markerIcon);
       }
     }
+    //ビュー自動切換え
+    if (autoSceneT + autoSceneF > 0) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
+        targetControl.controlButton.click();
+      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
+        followControl.controlButton.click();
+      }
+      console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
+    }
+    refreshCount++;
   }, interval); // 2秒ごとに更新
 
 
@@ -2983,6 +2986,7 @@ function initMap() {
 
   
 }
+
 
 
 
