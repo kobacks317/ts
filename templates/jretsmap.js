@@ -2843,8 +2843,21 @@ function initMap() {
   }
   intervalId = setInterval(async () => {
     _syncData = syncData;
+    //ビュー自動切換え
+    if (autoSceneT + autoSceneF > 0) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
+        targetControl.controlButton.click();
+		infoDisplay.toggleVisible(false);
+      } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
+        followControl.controlButton.click();
+		infoDisplay.toggleVisible(true);
+        await wait(interval-750);
+      }
+      // console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneF, autoSceneT);
+    }
+    refreshCount++;
+	  
     syncData = await getSyncData();
-    
     if (syncData.Lat && syncData.Lon) {
       const newPosition = {
         lat: syncData.Lat,
@@ -2928,19 +2941,6 @@ function initMap() {
         marker.setIcon(markerIcon);
       }
     }
-    //ビュー自動切換え
-    if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
-        targetControl.controlButton.click();
-		infoDisplay.toggleVisible(false);
-      } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
-        await wait(interval-750);
-        followControl.controlButton.click();
-		infoDisplay.toggleVisible(true);
-      }
-      // console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneF, autoSceneT);
-    }
-    refreshCount++;
   }, interval);
 
 
