@@ -2843,7 +2843,7 @@ function initMap() {
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF) {
         followControl.controlButton.click();
       }
-      concole.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
+      console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
     }
     refreshCount++;
     if (syncData.Lat && syncData.Lon) {
@@ -2983,6 +2983,7 @@ function initMap() {
 
   
 }
+
 
 
 
