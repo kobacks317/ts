@@ -2157,8 +2157,12 @@ class InfoDisplay {
     this.displayList = [];
   }
 
-  toggleVisible() {
-    this.visible = !this.visible;
+  toggleVisible(force=null) {
+	if (force == null) {
+	  this.visible = !this.visible;
+	} else {
+	  this.visible = force;
+	}
     this.init();
     this.update();
   }
@@ -2989,6 +2993,7 @@ function initMap() {
 
   
 }
+
 
 
 
