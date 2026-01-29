@@ -2838,7 +2838,7 @@ function initMap() {
     _syncData = syncData;
     syncData = await getSyncData();
     if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follw&&!target)) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
         targetControl.controlButton.click();
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
         followControl.controlButton.click();
@@ -2983,6 +2983,7 @@ function initMap() {
 
   
 }
+
 
 
 
