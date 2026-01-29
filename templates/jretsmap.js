@@ -2938,7 +2938,7 @@ function initMap() {
         followControl.controlButton.click();
 		infoDisplay.toggleVisible(true);
       }
-      console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
+      // console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneF, autoSceneT);
     }
     refreshCount++;
   }, interval);
@@ -2995,6 +2995,7 @@ function initMap() {
 
   
 }
+
 
 
 
