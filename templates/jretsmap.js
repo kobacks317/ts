@@ -2931,7 +2931,7 @@ function initMap() {
       if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
         targetControl.controlButton.click();
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
-        await wait(500);
+        await wait(100);
         followControl.controlButton.click();
       }
       console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
@@ -2991,6 +2991,7 @@ function initMap() {
 
   
 }
+
 
 
 
