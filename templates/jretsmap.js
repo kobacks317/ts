@@ -2823,11 +2823,11 @@ function initMap() {
   }
   const param_f = url.searchParams.get('f');
   if (param_f != null) {
-    autoSceneT = param_f;
+    autoSceneT = Number(param_f);
   }
   const param_t = url.searchParams.get('t');
   if (param_t != null) {
-    autoSceneF = param_t;
+    autoSceneF = Number(param_t);
   }
 
   // 定期的にSyncDataを取得してマーカーの位置を更新
@@ -2838,9 +2838,9 @@ function initMap() {
     _syncData = syncData;
     syncData = await getSyncData();
     if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT) {
+      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follw&&!target)) {
         targetControl.controlButton.click();
-      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF) {
+      } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
         followControl.controlButton.click();
       }
       console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
