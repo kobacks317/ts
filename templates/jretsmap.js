@@ -2824,11 +2824,11 @@ function initMap() {
   }
   const param_f = url.searchParams.get('f');
   if (param_f != null) {
-    autoSceneT = Number(param_f);
+    autoSceneF = Number(param_f);
   }
   const param_t = url.searchParams.get('t');
   if (param_t != null) {
-    autoSceneF = Number(param_t);
+    autoSceneT = Number(param_t);
   }
 
   // 定期的にSyncDataを取得してマーカーの位置を更新
@@ -2986,6 +2986,7 @@ function initMap() {
 
   
 }
+
 
 
 
