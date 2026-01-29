@@ -1456,6 +1456,10 @@ async function getSyncData() {
   return syncData;
 }
 
+async function wait(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getMapData(mapName) {
   const response = await fetch(`./templates/limits/${mapName}.json`);
   if (response.ok) {
@@ -2927,6 +2931,7 @@ function initMap() {
       if (refreshCount%(autoSceneT + autoSceneF) == autoSceneT && (follow&&!target)) {
         targetControl.controlButton.click();
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&target)) {
+        await wait(interval/2);
         followControl.controlButton.click();
       }
       console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
@@ -2986,6 +2991,7 @@ function initMap() {
 
   
 }
+
 
 
 
