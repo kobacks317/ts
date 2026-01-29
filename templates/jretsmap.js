@@ -2843,7 +2843,9 @@ function initMap() {
       } else if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF) {
         followControl.controlButton.click();
       }
+      concole.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneT, autoSceneF);
     }
+    refreshCount++;
     if (syncData.Lat && syncData.Lon) {
       const newPosition = {
         lat: syncData.Lat,
@@ -2981,6 +2983,7 @@ function initMap() {
 
   
 }
+
 
 
 
