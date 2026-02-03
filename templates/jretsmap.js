@@ -1898,7 +1898,7 @@ class FollowControl extends ControlButton {
 
 
     this.controlButton.addEventListener("click", () => {
-      initRotation = 1;
+      // initRotation = 1;
       if (target) {
         target = false;
         targetControl.normal();
@@ -1916,6 +1916,7 @@ class FollowControl extends ControlButton {
           this.activate();
         } else {
           northUp = !northUp;
+  		  initRotation = 2;
           followWide = false;
           infoDisplay.init();
           infoDisplay.update();
@@ -2995,6 +2996,7 @@ function initMap() {
 
   
 }
+
 
 
 
