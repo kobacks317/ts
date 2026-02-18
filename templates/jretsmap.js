@@ -2840,7 +2840,7 @@ function initMap() {
   }
   const param_z = url.searchParams.get('z');
   if (param_z != null) {
-    autoSceneZ = param_z;
+    autoSceneZ = Number(param_z);
   }
 
   // 定期的にSyncDataを取得してマーカーの位置を更新
@@ -3004,6 +3004,7 @@ function initMap() {
 
   
 }
+
 
 
 
