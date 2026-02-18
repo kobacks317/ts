@@ -2855,7 +2855,8 @@ function initMap() {
         targetControl.controlButton.click();
 		infoDisplay.toggleVisible(false);
 		if (autoSceneZ > 0) {
-			map.setZoom(autoSceneZ);
+		  map.setZoom(autoSceneZ);
+		  await wait(interval);
 		}
       } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
         followControl.controlButton.click();
@@ -3004,6 +3005,7 @@ function initMap() {
 
   
 }
+
 
 
 
