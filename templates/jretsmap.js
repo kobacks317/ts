@@ -38,6 +38,7 @@ var _tilt = 60;
 var refreshCount = 0;
 var autoSceneF = 0;
 var autoSceneT = 0;
+var autoSceneZ = 0;
 
 var _d = 0;
 
@@ -2837,6 +2838,10 @@ function initMap() {
     autoSceneF = Number(param_f);
     autoSceneT = Number(param_t);
   }
+  const param_z = url.searchParams.get('z');
+  if (param_z != null) {
+    autoSceneZ = param_z;
+  }
 
   // 定期的にSyncDataを取得してマーカーの位置を更新
   if (intervalId != null) {
@@ -2849,6 +2854,9 @@ function initMap() {
       if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
         targetControl.controlButton.click();
 		infoDisplay.toggleVisible(false);
+		if (autoSceneZ > 0) {
+			map.setZoom(autoSceneZ);
+		}
       } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
         followControl.controlButton.click();
 		infoDisplay.toggleVisible(true);
@@ -2996,6 +3004,7 @@ function initMap() {
 
   
 }
+
 
 
 
