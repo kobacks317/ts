@@ -2526,7 +2526,7 @@ class StationMarker {
         lineCode.style.lineHeight = "14px";
         numbering.style.lineHeight = "22px";
         lineCode.style.color = "#ffffff";
-        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 45%, #ffffff 45%)`;
+        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
       }
   
       plate.appendChild(lineCode);
