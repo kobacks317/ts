@@ -2519,6 +2519,10 @@ class StationMarker {
       } else if (split[0] == "TJ" || split[0] == "TS") {
         plate.style.borderRadius = "10px";
         content.style.borderRadius = "13px";
+      } else if (split[0] == "SI") {
+        plate.style.borderRadius = "10px";
+        content.style.borderRadius = "13px";
+        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
       }
   
       plate.appendChild(lineCode);
