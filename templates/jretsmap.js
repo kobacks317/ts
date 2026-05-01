@@ -2521,8 +2521,10 @@ class StationMarker {
         content.style.borderRadius = "13px";
       } else if (split[0] == "SI") {
         plate.style.borderRadius = "10px";
+        plate.style.borderWidth = "3px";
         content.style.borderRadius = "13px";
-        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
+        lineCode.style.color = "#ffffff";
+        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 45%, #ffffff 45%)`;
       }
   
       plate.appendChild(lineCode);
