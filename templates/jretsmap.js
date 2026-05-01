@@ -2520,10 +2520,11 @@ class StationMarker {
         plate.style.borderRadius = "10px";
         content.style.borderRadius = "13px";
       } else if (split[0] == "SI") {
-        plate.style.borderRadius = "10px";
+        plate.style.borderRadius = "5px";
         plate.style.borderWidth = "3px";
-        content.style.borderRadius = "13px";
-        lineCode.style.color = "#ffffff";
+        content.style.borderRadius = "8px";
+        lineCode.style.lineHeight = "20px"
+        //lineCode.style.color = "#ffffff";
         plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 45%, #ffffff 45%)`;
       }
   
