@@ -2523,7 +2523,7 @@ class StationMarker {
         plate.style.borderRadius = "5px";
         plate.style.borderWidth = "3px";
         content.style.borderRadius = "8px";
-        lineCode.style.lineHeight = "15px"
+        lineCode.style.lineHeight = "10px"
         //lineCode.style.color = "#ffffff";
         plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 45%, #ffffff 45%)`;
       }
