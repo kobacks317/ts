@@ -2523,9 +2523,9 @@ class StationMarker {
         plate.style.borderRadius = "5px";
         plate.style.borderWidth = "3px";
         content.style.borderRadius = "8px";
-        //lineCode.style.lineHeight = "5px";
-        //numbering.style.lineHeight = "20px";
-        //lineCode.style.color = "#ffffff";
+        lineCode.style.lineHeight = "14px";
+        numbering.style.lineHeight = "22px";
+        lineCode.style.color = "#ffffff";
         plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 45%, #ffffff 45%)`;
       }
   
