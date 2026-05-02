@@ -2427,7 +2427,7 @@ class StationMarker {
 
   static createIcon(name) {
     var content = null;
-    var match = name.match(/\w{2}-\d{2}/);
+    var match = name.match(/\w{1,2}-\d{2}/);
     
     if (match != null) {
       const split = match[0].split("-");
@@ -2548,6 +2548,10 @@ class StationMarker {
         numbering.style.color = "#0087cf";
         lineCode.style.fontSize = "15px";
         numbering.style.fontSize = "20px";
+      } else if (split[0].length == 1) {
+        plate.style.borderWidth = "5px";
+        plate.style.borderRadius = "50%";
+        content.style.borderRadius = "50%";
       }
  
   
