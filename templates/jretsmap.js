@@ -2550,8 +2550,8 @@ class StationMarker {
         numbering.style.fontSize = "20px";
       } else if (split[0] == "KO") {
         plate.style.borderRadius = "50%";
-        plate.style.borderWidth = "50%";
-        content.style.borderRadius = "8px";
+        plate.style.borderWidth = "3px";
+        content.style.borderRadius = "50%";
         lineCode.style.lineHeight = "14px";
         numbering.style.lineHeight = "17px";
         numbering.style.fontSize = "18px";
