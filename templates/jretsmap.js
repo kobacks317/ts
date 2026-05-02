@@ -2548,12 +2548,21 @@ class StationMarker {
         numbering.style.color = "#0087cf";
         lineCode.style.fontSize = "15px";
         numbering.style.fontSize = "20px";
+      } else if (split[0] == "KO") {
+        plate.style.borderRadius = "50%";
+        plate.style.borderWidth = "50%";
+        content.style.borderRadius = "8px";
+        lineCode.style.lineHeight = "14px";
+        numbering.style.lineHeight = "17px";
+        numbering.style.fontSize = "18px";
+        lineCode.style.color = "#ffffff";
+        plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
       } else if (split[0].length == 1) {
         plate.style.borderWidth = "5px";
         plate.style.borderRadius = "50%";
         content.style.borderRadius = "50%";
         lineCode.style.fontSize = "15px";
-        lineCode.style.lineHeight = "17px";
+        lineCode.style.lineHeight = "14px";
         numbering.style.fontSize = "18px";
         numbering.style.lineHeight = "17px";
       }
