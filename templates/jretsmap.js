@@ -2552,6 +2552,7 @@ class StationMarker {
         plate.style.borderWidth = "5px";
         plate.style.borderRadius = "50%";
         content.style.borderRadius = "50%";
+        lineCode.style.fontSize = "15px";
       }
  
   
