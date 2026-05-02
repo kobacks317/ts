@@ -2527,6 +2527,15 @@ class StationMarker {
         numbering.style.lineHeight = "22px";
         lineCode.style.color = "#ffffff";
         plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
+      } else if (split[0] == "TY") {
+        plate.style.borderRadius = "5px";
+        plate.style.borderWidth = "3px";
+        content.style.borderRadius = "8px";
+        //lineCode.style.lineHeight = "14px";
+        //numbering.style.lineHeight = "22px";
+        lineCode.style.color = "#ffffff";
+        numbering.style.color = "#ffffff";
+        plate.style.background = syncData.Color;
       } else if (split[0] == "OE") {
         plate.style.borderColor = "#0087cf";
         plate.style.borderWidth = "5px";
@@ -2537,7 +2546,7 @@ class StationMarker {
   
         lineCode.style.color = "#0087cf";
         numbering.style.color = "#0087cf";
-        lineCode.style.fontSize = "13px";
+        lineCode.style.fontSize = "15px";
         numbering.style.fontSize = "20px";
       }
  
