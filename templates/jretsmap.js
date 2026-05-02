@@ -2553,6 +2553,9 @@ class StationMarker {
         plate.style.borderRadius = "50%";
         content.style.borderRadius = "50%";
         lineCode.style.fontSize = "15px";
+        lineCode.style.lineHeight = "15px";
+        numbering.style.fontSize = "18px";
+        numbering.style.lineHeight = "18px";
       }
  
   
