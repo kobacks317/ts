@@ -2529,14 +2529,15 @@ class StationMarker {
         plate.style.background = `linear-gradient(to bottom, ${syncData.Color} 40%, #ffffff 40%)`;
       } else if (split[0] == "OE") {
         plate.style.borderColor = "#0087cf";
-        plate.style.borderWidth = "4px";
+        plate.style.borderWidth = "6px";
         // 4隅の曲がり具合を「水平 / 垂直」で細かく制御
         // これにより、正円よりも少し「四角み」を残した曲線になります
         plate.style.borderRadius = "45% 45% 45% 45% / 45% 45% 45% 45%";
+        content.style.borderRadius = "45% 45% 45% 45% / 45% 45% 45% 45%";
   
         lineCode.style.color = "#0087cf";
         numbering.style.color = "#0087cf";
-        lineCode.style.fontSize = "10px";
+        lineCode.style.fontSize = "15px";
         numbering.style.fontSize = "18px";
       }
  
