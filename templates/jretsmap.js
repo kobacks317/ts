@@ -2890,31 +2890,61 @@ function initMap() {
     autoSceneZ = Number(param_z);
   }
 
-  // 定期的にSyncDataを取得してマーカーの位置を更新
-  if (intervalId != null) {
-    clearInterval(intervalId);
-  }
-  intervalId = setInterval(async () => {
-    _syncData = syncData;
-    //ビュー自動切換え
-    if (autoSceneT + autoSceneF > 0) {
-      if (refreshCount%(autoSceneT + autoSceneF) == autoSceneF && (follow&&!target)) {
-        targetControl.controlButton.click();
-		infoDisplay.toggleVisible(false);
-		if (autoSceneZ > 0) {
-		  map.setZoom(autoSceneZ);
-		  await wait(interval);
-		}
-      } else if (refreshCount%(autoSceneT + autoSceneF) == 0 && (follow&&target)) {
-        followControl.controlButton.click();
-		infoDisplay.toggleVisible(true);
-        await wait(interval-750);
+  // --- 修正版 Web Workerのセットアップ ---
+  const workerCode = `
+    let timerId = null;
+    self.onmessage = function(e) {
+      if (e.data.action === 'start') {
+        // 最初の1回を即時実行
+        self.postMessage('TICK');
+        // 指定された間隔でメイン側に「実行しろ」という合図（TICK）だけを送る
+        timerId = setInterval(() => {
+          self.postMessage('TICK');
+        }, e.data.interval);
+      } else if (e.data.action === 'stop') {
+        clearInterval(timerId);
       }
-      // console.log(refreshCount, refreshCount%(autoSceneT + autoSceneF), autoSceneF, autoSceneT);
+    };
+  `;
+
+  if (window.myWorker) {
+    window.myWorker.postMessage({ action: 'stop' });
+  }
+  const blob = new Blob([workerCode], { type: 'application/javascript' });
+  window.myWorker = new Worker(URL.createObjectURL(blob));
+
+  // --- Workerから合図（TICK）が届いたときの処理 ---
+  window.myWorker.onmessage = async function(e) {
+    if (e.data !== 'TICK') return;
+
+    // 1. 元通りメイン側で安全にデータを取得する
+    try {
+      syncData = await getSyncData();
+    } catch (err) {
+      console.error("データ取得エラー:", err);
+      return;
+    }
+
+    // --- [ここから元のロジックをそのまま維持] ---
+    _syncData = syncData;
+    
+    // ビュー自動切換え
+    if (autoSceneT + autoSceneF > 0) {
+      if (refreshCount % (autoSceneT + autoSceneF) == autoSceneF && (follow && !target)) {
+        targetControl.controlButton.click();
+        infoDisplay.toggleVisible(false);
+        if (autoSceneZ > 0) {
+          map.setZoom(autoSceneZ);
+          await wait(interval);
+        }
+      } else if (refreshCount % (autoSceneT + autoSceneF) == 0 && (follow && target)) {
+        followControl.controlButton.click();
+        infoDisplay.toggleVisible(true);
+        await wait(interval - 750);
+      }
     }
     refreshCount++;
-	  
-    syncData = await getSyncData();
+    
     if (syncData.Lat && syncData.Lon) {
       const newPosition = {
         lat: syncData.Lat,
@@ -2938,7 +2968,6 @@ function initMap() {
       const prog = (syncData.Location_m - syncData.OriginLocation_m) / (syncData.TargetLocation_m - syncData.OriginLocation_m) * 100;
       if (syncData.Route.at(0).dist < syncData.Route.at(-1).dist) {
         const mapLoc = syncData.MapLoc_m;
-        // const mapLoc = syncData.Route.at(-1).dist - (syncData.TargetLocation_m - syncData.Location_m);
         var path_before = syncData.Route.filter(function(item, index){
           if (item.dist >= mapLoc) return true;
         });
@@ -2949,7 +2978,6 @@ function initMap() {
         path_after.push({lng: syncData.Lon, lat: syncData.Lat});
       } else {
         const mapLoc = - syncData.MapLoc_m;
-        // const mapLoc = syncData.Route.at(-1).dist + (syncData.TargetLocation_m - syncData.Location_m);
         var path_before = syncData.Route.filter(function(item, index){
           if (item.dist <= mapLoc) return true;
         });
@@ -2960,12 +2988,8 @@ function initMap() {
         path_after.push({lng: syncData.Lon, lat: syncData.Lat});
       }
       targetControl.update(targetName=syncData.TargetName, prog, path_before, path_after, syncData.Color);
-      // marker_t.setPosition(new google.maps.LatLng(syncData.TargetLat, syncData.TargetLon));
-      // marker_t.setPosition(new google.maps.LatLng(syncData.Route.at(-1).lat, syncData.Route.at(-1).lng));
-      // marker_o.setPosition(new google.maps.LatLng(syncData.Route.at(0).lat, syncData.Route.at(0).lng));
 
       const d = Math.round(syncData.MapLoc_m - syncData.Location_m);
-      // if (marker_t.name != syncData.TargetName) {
       if (marker_t.name != syncData.TargetName || d != _d) {
         marker_t.remove();
         marker_o.remove();
@@ -2976,7 +3000,6 @@ function initMap() {
         }
       }
       _d = d;
-
 
       // 速度制限情報を更新
       infoDisplay.update();
@@ -2998,7 +3021,11 @@ function initMap() {
         marker.setIcon(markerIcon);
       }
     }
-  }, interval);
+    // --- [元のロジックここまで] ---
+  };
+
+  // タイマーの開始指示を送る
+  window.myWorker.postMessage({ action: 'start', interval: interval });
 
 
   map.addListener("dragstart", () => {
