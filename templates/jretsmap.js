@@ -2502,6 +2502,8 @@ class StationMarker {
         plate.style.borderColor = "#e31f26";
       } else if (split[0] == "JK") {
         plate.style.borderColor = "#00B2E5";
+      } else if (split[0] == "JE") {
+        plate.style.borderColor = "#C9252F";
       } else if (split[0] == "OI") {
         plate.style.borderWidth = "2px";
         plate.style.lineHeight = "normal";
