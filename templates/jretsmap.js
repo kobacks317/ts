@@ -3005,6 +3005,7 @@ function initMap() {
 
       // 速度制限情報を更新
       infoDisplay.update();
+	  speedDisplay.update();
       
       // マーカー位置を更新
       marker.setPosition(newPosition);
