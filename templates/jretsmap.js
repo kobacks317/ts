@@ -2920,6 +2920,7 @@ function initMap() {
     if (e.data !== 'TICK') return;
 
     // 1. 元通りメイン側で安全にデータを取得する
+    _syncData = syncData;
     try {
       syncData = await getSyncData();
     } catch (err) {
@@ -2928,7 +2929,6 @@ function initMap() {
     }
 
     // --- [ここから元のロジックをそのまま維持] ---
-    _syncData = syncData;
     
     // ビュー自動切換え
     if (autoSceneT + autoSceneF > 0) {
